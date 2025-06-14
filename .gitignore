@@ -1,0 +1,14 @@
+/test/
+node_modules/
+.env
+.DS_Store
+*.log
+dist/
+build/
+.idea/
+.vscode/
+npm-debug.log*
+/vendor/
+.cache/
+*.tmp
+*.swp
