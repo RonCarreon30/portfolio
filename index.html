@@ -15,20 +15,42 @@
   <style>
     body {
       margin: 0;
-      overflow: hidden;
+      padding: 0;
+      /* Remove overflow: hidden */
       background-color: #0a0a0a;
       background-image: linear-gradient(#1a1a1a 1px, transparent 1px),
         linear-gradient(90deg, #1a1a1a 1px, transparent 1px);
+      /* Fix background-size to be responsive */
       background-size: 40px 40px;
       font-family: 'Orbitron', monospace;
+      min-height: 100vh;
+      width: 100%;
+      position: relative;
+    }
+
+    html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
     }
 
     canvas {
       display: block;
-      position: absolute;
+      position: fixed;
+      /* Changed from absolute to fixed */
       top: 0;
       left: 0;
+      width: 100vw;
+      height: 100vh;
       z-index: 0;
+    }
+
+    /* Ensure proper box-sizing */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
     }
   </style>
 </head>
@@ -36,7 +58,7 @@
 <body class=" text-white min-h-screen flex flex-col justify-between">
   <!-- ✅ NAVBAR -->
   <nav
-    class="fixed top-0 w-full h-16 z-20 flex items-center justify-between px-6 bg-black bg-opacity-30 backdrop-blur-md text-white select-none">
+    class="fixed top-0 w-full h-16 z-20 flex items-center justify-between px-6 bg-black/15 backdrop-blur-xs text-white select-none">
 
     <!-- Mobile Menu Button (visible on md and below) -->
     <div class="lg:hidden">
@@ -97,17 +119,20 @@
 
       <!-- Trapezoid text box -->
       <div id="trapezoid"
-        class="relative w-auto px-6 xl:px-12 h-16 bg-cyan-600 text-white flex items-center justify-center font-semibold text-lg select-none"
+        class="relative w-1/5 lg:w-1/12 xl:w-1/6 h-16 px-6 lg:px-14 xl:px-24 bg-cyan-600 text-white flex items-center justify-center font-semibold text-xs lg:text-lg select-none"
         style="clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%);">
         HOME
       </div>
 
-      <button data-label="EXPERIENCE" aria-label="Experience"
+
+      <button data-label="FEED" aria-label="FEED"
         class="nav-icon text-white hover:text-cyan-400 focus:outline-none focus:text-cyan-400">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-          <path
-            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+        <!-- RSS icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          stroke-width="2">
+          <path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16M5 19a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
         </svg>
+
       </button>
 
       <button data-label="CONTACT" aria-label="Contact"
@@ -149,97 +174,187 @@
   </nav>
 
   <!-- Main content -->
-  <main class="flex-grow flex items-center justify-center px-4 z-10 mt-16">
-    <div class="flex flex-col sm:flex-row items-stretch gap-6">
-      <!-- About box -->
-      <section class="bg-[#1f2a4d]/40 border border-[#4a5a7a] max-w-[20rem] w-full mt-6 text-xs sm:text-sm rounded-md">
-        <h2 class="font-bold p-6 tracking-widest text-center text-lg sm:text-left">
-          ABOUT
-        </h2>
-        <p class="leading-normal p-6">
-          A BSIT graduate with a strong foundation in web development, networking, and technical support.
-          Passionate
-          about creating efficient, user-centric digital solutions, with a growing focus on integrating AI
-          tools to
-          streamline workflows and enhance productivity. Skilled in both frontend technologies and IT
-          infrastructure,
-          bringing a well-rounded approach to problem-solving in dynamic development environments.
-        </p>
-      </section>
+  <!-- Main content -->
+  <main class="flex-grow flex items-center justify-center px-6 z-10 mt-16">
+    <div class="max-w-7xl w-full flex flex-col lg:flex-row justify-center gap-8">
 
       <!-- Profile card -->
       <section
-        class="bg-[#1f2a4d] border-4 border-[#4a5a7a] p-6 max-w-[24rem] w-full flex flex-col items-center rounded-md shadow-md">
-        <div class="border-4 border-[#7ea9d9] mb-4 max-w-[24rem] max-h-[20rem] overflow-hidden rounded-md">
-          <img
-            alt="Digital art portrait of a young man with glasses wearing a black jacket, dark background with red abstract shapes"
-            class="object-cover w-full h-auto max-h-[18rem] rounded-md"
-            src="https://storage.googleapis.com/a1aa/image/f6dd99ca-60c4-4ef6-7f0e-d54341bc7088.jpg" />
+        class="bg-[#1f2a4d] border-4 border-[#4a5a7a] w-full max-w-sm mx-auto lg:mx-0 lg:w-auto lg:min-w-[20rem] lg:max-w-[22rem] flex flex-col items-center rounded-md shadow-md">
+        <div class="border-4 border-[#7ea9d9] mb-4 w-full overflow-hidden rounded-md">
+          <div class="relative w-full" style="padding-bottom: 125%;">
+            <img
+              alt="Digital art portrait of a young man with glasses wearing a black jacket, dark background with red abstract shapes"
+              class="absolute inset-0 w-full h-full object-cover object-center rounded-md"
+              src="misc/eb472474-d9d9-460d-9c37-196316656696 1.png" />
+          </div>
         </div>
-        <div class="bg-[#3db9d9] w-full text-center py-2 font-semibold tracking-widest text-white rounded-b-md">
+        <div
+          class="bg-[#3db9d9] w-full text-center py-2 font-semibold tracking-widest text-white rounded-b-md text-sm sm:text-base">
           Ronnie Carreon
         </div>
-        <div class="py-2 text-center text-xs text-[#cbd5e1] font-mono">
+        <div class="py-2 mb-3 text-center text-xs text-[#cbd5e1] font-mono">
           CodeBitsPH
         </div>
-        <div class="flex justify-center space-x-6 pb-6 text-[#cbd5e1]">
-          <a aria-label="LinkedIn profile" class="hover:text-white transition-colors duration-300" href="#">
-            <i class="fab fa-linkedin-in text-lg"></i>
+        <div class="flex justify-center space-x-10 pb-6 my-3 text-[#cbd5e1]">
+          <a aria-label="LinkedIn profile" class="hover:text-white transition-colors duration-300"
+            href="https://linkedin.com/in/roncarreon30" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-linkedin-in text-2xl hover:scale-110 transition-transform duration-200"></i>
           </a>
-          <a aria-label="GitHub profile" class="hover:text-white transition-colors duration-300" href="#">
-            <i class="fab fa-github text-lg"></i>
+          <a aria-label="GitHub profile" class="hover:text-white transition-colors duration-300"
+            href="https://github.com/RonCarreon30" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github text-2xl hover:scale-110 transition-transform duration-200"></i>
           </a>
-          <a aria-label="Facebook profile" class="hover:text-white transition-colors duration-300" href="#">
-            <i class="fab fa-facebook-f text-lg"></i>
+          <a aria-label="Facebook profile" class="hover:text-white transition-colors duration-300"
+            href="https://www.facebook.com/codebitsph/" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-facebook-f text-2xl hover:scale-110 transition-transform duration-200"></i>
           </a>
         </div>
       </section>
 
-      <!-- Skills box -->
-      <section class="bg-[#1f2a4d]/40 border border-[#4a5a7a] max-w-[20rem] w-full mt-6 text-xs sm:text-sm rounded-md">
-        <h2 class="font-bold p-6 tracking-widest text-center text-lg sm:text-left">
-          SKILLS
-        </h2>
-        <div class="space-y-3 p-6">
-          <div>
-            <p class="mb-1">Web Development</p>
-            <div class="h-[2px] bg-white w-full"></div>
+      <!-- About and Skills section -->
+      <div class="bg-[#1f2a4d]/40 border border-[#4a5a7a] flex-1 max-w-[45rem] w-full text-xs sm:text-sm rounded-md">
+        <!-- About box -->
+        <section>
+          <h2 class="font-bold p-6 tracking-widest text-center text-lg sm:text-left">
+            ABOUT
+          </h2>
+          <p class="leading-normal px-6 pb-6">
+            Hey, I'm Ron! <br /> a full-stack developer and a cybersecurity enthusiast who just finished BS in
+            Information
+            Technology and love building web apps that are both clean and functional.
+            <br /><br />
+            Outside of coding, I'm usually geeking out over new tech, diving into cybersecurity stuff, or sharing what I
+            learn as @CodeBitsPH on social media. Always learning, always building - and probably fixing a bug I created
+            five minutes ago.
+          </p>
+        </section>
+
+        <!-- Skills box -->
+        <section>
+          <h2 class="font-bold px-6 pt-6 tracking-widest text-center text-lg sm:text-left">
+            SKILLS
+          </h2>
+
+          <!-- Skill bars -->
+          <div class="px-6 py-4 space-y-6 text-white" id="skill-section">
+
+            <!-- Skill Row -->
+            <div class="flex justify-between items-start">
+              <div class="flex-1 mr-8 group relative">
+                <p class="mb-2 text-sm font-semibold">Front-End</p>
+                <div class="bg-white/20 rounded-full h-2 overflow-hidden">
+                  <div class="bg-white h-2 rounded-full skill-bar" data-level="4"></div>
+                </div>
+                <div
+                  class="absolute left-0 mt-2 hidden group-hover:block text-xs bg-gray-800 text-white p-2 rounded shadow w-max z-10">
+                  HTML, CSS, JavaScript, Tailwind CSS, Bootstrap
+                </div>
+              </div>
+              <div class="flex-1 group relative">
+                <p class="mb-2 text-sm font-semibold">Back-End</p>
+                <div class="bg-white/20 rounded-full h-2 overflow-hidden">
+                  <div class="bg-white h-2 rounded-full skill-bar" data-level="5"></div>
+                </div>
+                <div
+                  class="absolute left-0 mt-2 hidden group-hover:block text-xs bg-gray-800 text-white p-2 rounded shadow w-max z-10">
+                  PHP, SQL, REST APIs, XAMPP
+                </div>
+              </div>
+            </div>
+
+            <!-- Skill Row -->
+            <div class="flex justify-between items-start">
+              <div class="flex-1 mr-8 group relative">
+                <p class="mb-2 text-sm font-semibold">Networking</p>
+                <div class="bg-white/20 rounded-full h-2 overflow-hidden">
+                  <div class="bg-white h-2 rounded-full skill-bar" data-level="6"></div>
+                </div>
+                <div
+                  class="absolute left-0 mt-2 hidden group-hover:block text-xs bg-gray-800 text-white p-2 rounded shadow w-max z-10">
+                  Ping, Traceroute, IP Addressing, Router Setup,
+                </div>
+              </div>
+              <div class="flex-1 group relative">
+                <p class="mb-2 text-sm font-semibold">Cybersecurity</p>
+                <div class="bg-white/20 rounded-full h-2 overflow-hidden">
+                  <div class="bg-white h-2 rounded-full skill-bar" data-level="3"></div>
+                </div>
+                <div
+                  class="absolute left-0 mt-2 hidden group-hover:block text-xs bg-gray-800 text-white p-2 rounded shadow w-max z-10">
+                  Fundamentals, XSS/SQLi Prevention, OWASP Top 10
+                </div>
+              </div>
+            </div>
+
+            <!-- Skill Row -->
+            <div class="flex justify-between items-start">
+              <div class="flex-1 mr-8 group relative">
+                <p class="mb-2 text-sm font-semibold">System & Network Basics</p>
+                <div class="bg-white/20 rounded-full h-2 overflow-hidden">
+                  <div class="bg-white h-2 rounded-full skill-bar" data-level="8"></div>
+                </div>
+                <div
+                  class="absolute left-0 mt-2 hidden group-hover:block text-xs bg-gray-800 text-white p-2 rounded shadow w-max z-10">
+                  OS Installation, Troubleshooting, Basic Linux, Command Line
+                </div>
+              </div>
+              <div class="flex-1 group relative">
+                <p class="mb-2 text-sm font-semibold">Tools & Workflow</p>
+                <div class="bg-white/20 rounded-full h-2 overflow-hidden">
+                  <div class="bg-white h-2 rounded-full skill-bar" data-level="7"></div>
+                </div>
+                <div
+                  class="absolute left-0 mt-2 hidden group-hover:block text-xs bg-gray-800 text-white p-2 rounded shadow w-max z-10">
+                  Git & GitHub, VS Code, Trello, Figma
+                </div>
+              </div>
+            </div>
+
           </div>
-          <div>
-            <p class="mb-1">Networking</p>
-            <div class="h-[2px] bg-white w-full"></div>
+
+          <!-- Technology icons -->
+          <div class="flex justify-center items-center p-6 space-x-4">
+            <div class="w-10 h-10 bg-orange-600 rounded flex items-center justify-center">
+              <span class="text-white font-bold text-sm">5</span>
+            </div>
+            <div class="w-10 h-10 bg-teal-500 rounded flex items-center justify-center">
+              <span class="text-white font-bold text-xs">~</span>
+            </div>
+            <div class="w-10 h-10 bg-blue-600 rounded flex items-center justify-center">
+              <span class="text-white font-bold text-sm">3</span>
+            </div>
+            <div class="w-10 h-10 bg-yellow-500 rounded flex items-center justify-center">
+              <span class="text-black font-bold text-sm">JS</span>
+            </div>
+            <div class="w-10 h-10 bg-purple-600 rounded flex items-center justify-center">
+              <span class="text-white font-bold text-sm">PHP</span>
+            </div>
+            <div class="w-10 h-10 bg-blue-800 rounded flex items-center justify-center">
+              <span class="text-white font-bold text-sm">W</span>
+            </div>
+            <div class="w-10 h-10 bg-orange-500 rounded flex items-center justify-center">
+              <span class="text-white font-bold text-sm">SQL</span>
+            </div>
+            <div class="w-10 h-10 bg-gray-700 rounded flex items-center justify-center">
+              <span class="text-white font-bold text-sm">++</span>
+            </div>
           </div>
-          <div>
-            <p class="mb-1">Tech Support</p>
-            <div class="h-[2px] bg-white w-full"></div>
-          </div>
-          <div>
-            <p class="mb-1">UI/UX Design</p>
-            <div class="h-[2px] bg-white w-full"></div>
-          </div>
-          <div>
-            <p class="mb-1">Cybersecurity</p>
-            <div class="h-[2px] bg-white w-full"></div>
-          </div>
-        </div>
-        <div class="flex justify-between items-center p-6 mt-6 space-x-2">
-          <img alt="HTML5 logo icon" class="w-8 h-8"
-            src="https://storage.googleapis.com/a1aa/image/841f829d-2362-4c8d-3244-5518819f6221.jpg" />
-          <img alt="Tailwind CSS logo icon" class="w-8 h-8"
-            src="https://storage.googleapis.com/a1aa/image/90e0b6fe-92a3-4642-d798-999940d60196.jpg" />
-          <img alt="CSS3 logo icon" class="w-8 h-8"
-            src="https://storage.googleapis.com/a1aa/image/01bb03e3-add9-4a7f-eb06-58fb43bd41d0.jpg" />
-          <img alt="JavaScript logo icon" class="w-8 h-8"
-            src="https://storage.googleapis.com/a1aa/image/b50c9e40-d8d5-42b5-a6fb-99791a418c86.jpg" />
-          <img alt="PHP logo icon" class="w-8 h-8"
-            src="https://storage.googleapis.com/a1aa/image/f50cebd4-7ad4-46d7-b721-cd2e2c8d926a.jpg" />
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   </main>
 
+  <!-- Download CV Button -->
+  <div class="flex justify-center items-center mb-12 px-4 z-10">
+    <button
+      class="border border-white px-8 py-3 bg-[#1f2a4d] hover:bg-[#3db9d9] hover:border-[#3db9d9] text-white transition-colors duration-300 font-bold tracking-widest">
+      <a href="misc/Carreon_Resume.pdf" download="Carreon_Resume">Download CV</a>
+    </button>
+  </div>
 
-  <!-- Buttons -->
+
+  <!-- Buttons
   <div
     class="flex justify-center items-center space-x-6 mb-12 text-xs sm:text-sm font-semibold tracking-widest px-4 -translate-y-10 z-10">
     <button
@@ -252,7 +367,7 @@
     <button
       class="border border-white px-6 py-2 min-w-[90px] flex justify-center items-center hover:bg-white hover:text-[#0a1429] transition-colors duration-300">
       PLAY
-    </button>
+    </button>  -->
   </div>
 
   <!-- Footer -->
@@ -319,6 +434,25 @@
       }
     });
   </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const bars = document.querySelectorAll(".skill-bar");
+
+      bars.forEach(bar => {
+        const level = parseInt(bar.dataset.level); // 1–10
+        const widthPercent = (level / 10) * 100;
+
+        // Animate width
+        bar.style.width = "0%";
+        bar.style.transition = "width 1s ease-out";
+
+        setTimeout(() => {
+          bar.style.width = widthPercent + "%";
+        }, 100); // slight delay for animation effect
+      });
+    });
+  </script>
+
 
 </body>
 
