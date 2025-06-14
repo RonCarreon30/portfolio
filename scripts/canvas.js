@@ -1,3 +1,4 @@
+
 const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
@@ -9,11 +10,9 @@ window.addEventListener("resize", () => {
 });
 
 const trail = [];
-const maxPoints = 60;
-
+const maxPoints = 10;
 const shapes = [];
 const numShapes = Math.floor(Math.random() * 6) + 5;
-
 const particles = [];
 
 function createRandomShape() {
@@ -136,7 +135,6 @@ function animate() {
         ctx.stroke();
     }
 
-    // Detect collision and trigger hit
     for (let s of shapes) {
         for (let p of trail) {
             if (!s.hit && isHit(s, p)) {
@@ -148,9 +146,8 @@ function animate() {
         }
     }
 
-    // Update trail
     for (let i = trail.length - 1; i >= 0; i--) {
-        trail[i].life -= 0.02;
+        trail[i].life -= 0.03;
         trail[i].width *= 0.96;
         if (trail[i].life <= 0 || trail[i].width < 0.5) {
             trail.splice(i, 1);
@@ -158,7 +155,6 @@ function animate() {
     }
 
     drawParticles();
-
     requestAnimationFrame(animate);
 }
 

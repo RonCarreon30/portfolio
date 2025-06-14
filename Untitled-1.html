@@ -7,7 +7,7 @@
     <title>
         RON CARREON | CodeBitsPH
     </title>
-    <script src="https://cdn.tailwindcss.com">
+    <link href="./src/styles.css" rel="stylesheet" />
     </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
@@ -34,7 +34,7 @@
 
         /* Custom trapezoid for larger screens */
         .trapezoid-desktop {
-            clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%);
+            clip-path: polygon(0% 0%, 100% 0%, 95% 100%, 5% 100%);
         }
 
         /* Mobile navigation adjustments */
@@ -92,8 +92,8 @@
             </div>
 
             <!-- Desktop Navigation (hidden on mobile) -->
-            <div class="hidden md:flex items-center justify-center gap-2 lg:gap-4 xl:gap-6 2xl:gap-8 relative">
-                <div class="absolute inset-0 trapezoid-desktop bg-cyan-600 bg-opacity-20 -mx-8 lg:-mx-12 xl:-mx-16">
+            <div class="hidden md:flex items-center justify-center gap-2 lg:gap-4 xl:gap-6 2xl:gap-8">
+                <div class="absolute inset-0 trapezoid-desktop bg-cyan-950 bg-opacity-20 -mx-12">
                 </div>
 
                 <button data-label="HOME" aria-label="Home"
@@ -114,7 +114,7 @@
                 </button>
 
                 <div id="trapezoid-desktop"
-                    class="w-32 lg:w-40 xl:w-48 h-12 lg:h-14 xl:h-16 bg-cyan-600 text-white flex items-center justify-center font-semibold text-sm lg:text-base xl:text-lg select-none trapezoid-desktop relative z-10">
+                    class="w-32 lg:w-40 xl:w-48 h-full lg:h-14 xl:h-16 bg-cyan-600 text-white flex items-center justify-center font-semibold text-sm lg:text-base xl:text-lg select-none trapezoid-desktop relative z-10">
                     HOME
                 </div>
 

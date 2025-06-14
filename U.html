@@ -1,198 +1,237 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <title>
-        RON CARREON | CodeBitsPH
-    </title>
-    <script src="https://cdn.tailwindcss.com">
-    </script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron&amp;display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improved Responsive Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: 'Orbitron', monospace;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+        }
+
+        .card {
+            backdrop-filter: blur(10px);
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .skill-bar {
+            height: 4px;
+            background: linear-gradient(90deg, #06b6d4, #0891b2);
+            border-radius: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .profile-section {
+                order: 1;
+            }
+
+            .about-section {
+                order: 2;
+            }
+
+            .skills-section {
+                order: 3;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .main-container {
+                flex-direction: row;
+                align-items: stretch;
+            }
+
+            .about-section {
+                order: 1;
+            }
+
+            .profile-section {
+                order: 2;
+            }
+
+            .skills-section {
+                order: 3;
+            }
         }
     </style>
 </head>
 
-<body class="bg-[#0a1429] text-white min-h-screen flex flex-col justify-between">
-    <div class="max-w-7xl mx-auto w-full p-4 flex flex-col min-h-screen">
-        <!-- Top bar -->
-        <header class="flex justify-between items-center text-xs sm:text-sm font-semibold tracking-widest">
-            <div class="flex items-center space-x-2">
-                <span>
-                    09:36 | PhST
-                </span>
+<body class="text-white font-sans">
+    <!-- Responsive Navigation -->
+    <nav class="sticky top-0 z-50 px-4 py-3 bg-slate-900/90 backdrop-blur-md border-b border-slate-700">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Logo/Brand -->
+            <div class="text-xl font-bold text-cyan-400">CodeBitsPH</div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#" class="hover:text-cyan-400 transition-colors">Home</a>
+                <a href="#" class="hover:text-cyan-400 transition-colors">Projects</a>
+                <a href="#" class="hover:text-cyan-400 transition-colors">Experience</a>
+                <a href="#" class="hover:text-cyan-400 transition-colors">Contact</a>
             </div>
-            <nav class="flex items-center space-x-8 sm:space-x-12">
-                <a class="text-[#1f2a4d] hover:text-white transition-colors duration-300" href="#">
-                    <i class="fas fa-home text-xl">
-                    </i>
-                </a>
-                <a class="text-white text-xl" href="#">
-                    <i class="far fa-folder">
-                    </i>
-                </a>
-                <a class="bg-[#1f2a4d] px-6 py-2 rounded-t-lg font-bold tracking-widest" href="#">
-                    HOME
-                </a>
-                <a class="text-white text-xl" href="#">
-                    <i class="fas fa-briefcase">
-                    </i>
-                </a>
-                <a class="text-white text-xl" href="#">
-                    <i class="fas fa-phone-alt">
-                    </i>
-                </a>
-            </nav>
-            <div class="flex items-center space-x-2 text-xs sm:text-sm font-semibold tracking-widest">
-                <i class="fas fa-cloud-rain text-lg">
-                </i>
-                <span>
-                    JUNE 06, 2025
-                </span>
-            </div>
-        </header>
-        <!-- Main content -->
-        <main class="flex flex-col sm:flex-row justify-center items-center flex-grow gap-6 mt-10">
-            <!-- About box -->
-            <section class="bg-[#1f2a4d]/40 border border-[#4a5a7a] p-6 max-w-xs sm:max-w-[20rem] text-xs sm:text-sm">
-                <h2 class="font-bold mb-4 tracking-widest">
-                    ABOUT
-                </h2>
-                <p class="leading-tight">
-                    Tech-curious and detail-oriented BS in Information Technology graduate
-                    with strong skills in hardware and software troubleshooting. Passionate
-                    about building a career as a developer or cybersecurity professional.
-                    Gained hands-on experience through OJT and self-initiated projects in
-                    hardware/software troubleshooting, networking, web development, and
-                    system security principles.
-                </p>
-            </section>
-            <!-- Profile card -->
-            <section class="bg-[#1f2a4d] border border-[#4a5a7a] max-w-xs sm:max-w-[20rem] flex flex-col items-center">
-                <div class="border-4 border-[#7ea9d9] p-1 mt-6 mb-2 max-w-[14rem] max-h-[18rem] overflow-hidden">
-                    <img alt="Digital art portrait of a young man with glasses wearing a black jacket, dark background with red abstract shapes"
-                        class="object-cover w-56 h-72" height="288"
-                        src="https://storage.googleapis.com/a1aa/image/f6dd99ca-60c4-4ef6-7f0e-d54341bc7088.jpg"
-                        width="224" />
-                </div>
-                <div class="bg-[#3db9d9] w-full text-center py-2 font-semibold tracking-widest text-white">
-                    Ronnie Carreon
-                </div>
-                <div class="py-2 text-center text-xs text-[#cbd5e1] font-mono">
-                    CodeBitsPH
-                </div>
-                <div class="flex justify-center space-x-6 pb-6">
-                    <a aria-label="LinkedIn profile"
-                        class="text-[#cbd5e1] hover:text-white transition-colors duration-300" href="#">
-                        <i class="fab fa-linkedin-in text-lg">
-                        </i>
-                    </a>
-                    <a aria-label="GitHub profile"
-                        class="text-[#cbd5e1] hover:text-white transition-colors duration-300" href="#">
-                        <i class="fab fa-github text-lg">
-                        </i>
-                    </a>
-                    <a aria-label="Facebook profile"
-                        class="text-[#cbd5e1] hover:text-white transition-colors duration-300" href="#">
-                        <i class="fab fa-facebook-f text-lg">
-                        </i>
-                    </a>
-                </div>
-            </section>
-            <!-- Skills box -->
-            <section class="bg-[#1f2a4d]/40 border border-[#4a5a7a] p-6 max-w-xs sm:max-w-[20rem] text-xs sm:text-sm">
-                <h2 class="font-bold mb-4 tracking-widest">
-                    SKILLS
-                </h2>
-                <div class="space-y-3">
-                    <div>
-                        <p class="mb-1">
-                            Web Development
-                        </p>
-                        <div class="h-[2px] bg-white w-full">
-                        </div>
-                    </div>
-                    <div>
-                        <p class="mb-1">
-                            Networking
-                        </p>
-                        <div class="h-[2px] bg-white w-full">
-                        </div>
-                    </div>
-                    <div>
-                        <p class="mb-1">
-                            Tech Support
-                        </p>
-                        <div class="h-[2px] bg-white w-full">
-                        </div>
-                    </div>
-                    <div>
-                        <p class="mb-1">
-                            UI/UX Design
-                        </p>
-                        <div class="h-[2px] bg-white w-full">
-                        </div>
-                    </div>
-                    <div>
-                        <p class="mb-1">
-                            Cybersecurity
-                        </p>
-                        <div class="h-[2px] bg-white w-full">
-                        </div>
-                    </div>
-                </div>
-                <div class="flex justify-between items-center mt-6 space-x-2">
-                    <img alt="HTML5 logo icon in purple-blue gradient style" class="w-8 h-8" height="32"
-                        src="https://storage.googleapis.com/a1aa/image/841f829d-2362-4c8d-3244-5518819f6221.jpg"
-                        width="32" />
-                    <img alt="Tailwind CSS logo icon in purple-blue gradient style" class="w-8 h-8" height="32"
-                        src="https://storage.googleapis.com/a1aa/image/90e0b6fe-92a3-4642-d798-999940d60196.jpg"
-                        width="32" />
-                    <img alt="CSS3 logo icon in purple-blue gradient style" class="w-8 h-8" height="32"
-                        src="https://storage.googleapis.com/a1aa/image/01bb03e3-add9-4a7f-eb06-58fb43bd41d0.jpg"
-                        width="32" />
-                    <img alt="JavaScript logo icon in purple-blue gradient style" class="w-8 h-8" height="32"
-                        src="https://storage.googleapis.com/a1aa/image/b50c9e40-d8d5-42b5-a6fb-99791a418c86.jpg"
-                        width="32" />
-                    <img alt="PHP logo icon in purple-blue gradient style" class="w-8 h-8" height="32"
-                        src="https://storage.googleapis.com/a1aa/image/f50cebd4-7ad4-46d7-b721-cd2e2c8d926a.jpg"
-                        width="32" />
-                </div>
-            </section>
-        </main>
-        <!-- Buttons -->
-        <div
-            class="flex justify-center items-center space-x-6 mt-12 mb-12 text-xs sm:text-sm font-semibold tracking-widest">
-            <button
-                class="border border-white px-6 py-1 hover:bg-white hover:text-[#0a1429] transition-colors duration-300">
-                ??
-            </button>
-            <button
-                class="border border-white px-6 py-1 bg-[#1f2a4d] hover:bg-[#3db9d9] hover:border-[#3db9d9] text-white transition-colors duration-300 font-bold">
-                Download CV
-            </button>
-            <button
-                class="border border-white px-6 py-1 hover:bg-white hover:text-[#0a1429] transition-colors duration-300">
-                PLAY
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 hover:text-cyan-400">
+                <i class="fas fa-bars text-xl"></i>
             </button>
         </div>
-        <!-- Footer -->
-        <footer class="flex justify-between text-[10px] sm:text-xs text-[#4a5a7a] font-mono tracking-wide">
-            <span>
-                2025 | Designed by Ron Carreon | Inspired by Valorant
-            </span>
-            <span>
-                Made with HTML, Tailwind, &amp; JS &lt;3
-            </span>
-        </footer>
 
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden mt-4 pb-4 border-t border-slate-700 hidden">
+            <div class="flex flex-col space-y-2 pt-4">
+                <a href="#" class="block py-2 px-4 hover:bg-slate-800 rounded">Home</a>
+                <a href="#" class="block py-2 px-4 hover:bg-slate-800 rounded">Projects</a>
+                <a href="#" class="block py-2 px-4 hover:bg-slate-800 rounded">Experience</a>
+                <a href="#" class="block py-2 px-4 hover:bg-slate-800 rounded">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-    </div>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 lg:py-16">
+        <!-- Single responsive container - no duplication -->
+        <div class="main-container flex gap-6 lg:gap-8 max-w-6xl mx-auto">
 
+            <!-- About Section -->
+            <section class="about-section card rounded-lg p-6 flex-1 max-w-sm mx-auto md:mx-0">
+                <h2 class="text-xl font-bold mb-4 text-center md:text-left">ABOUT</h2>
+                <p class="text-sm md:text-base leading-relaxed text-slate-300">
+                    A BSIT graduate with a strong foundation in web development, networking, and technical support.
+                    Passionate about creating efficient, user-centric digital solutions.
+                </p>
+            </section>
+
+            <!-- Profile Section -->
+            <section class="profile-section card rounded-lg p-6 max-w-sm mx-auto md:mx-0 flex-shrink-0">
+                <div class="relative mb-4">
+                    <img src="https://via.placeholder.com/300x375/1e293b/06b6d4?text=Profile" alt="Profile"
+                        class="w-full h-auto rounded-lg border-2 border-cyan-400">
+                </div>
+
+                <div class="text-center">
+                    <h1 class="text-xl font-bold bg-cyan-500 text-white py-2 px-4 rounded-b-lg mb-2">
+                        Ronnie Carreon
+                    </h1>
+                    <p class="text-sm text-slate-400 mb-4">CodeBitsPH</p>
+
+                    <!-- Social Links -->
+                    <div class="flex justify-center space-x-4 text-slate-400">
+                        <a href="#" class="hover:text-white transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="hover:text-white transition-colors">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="#" class="hover:text-white transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="skills-section card rounded-lg p-6 flex-1 max-w-sm mx-auto md:mx-0">
+                <h2 class="text-xl font-bold mb-4 text-center md:text-left">SKILLS</h2>
+
+                <div class="space-y-4 mb-6">
+                    <div>
+                        <p class="text-sm mb-2">Web Development</p>
+                        <div class="skill-bar w-full"></div>
+                    </div>
+                    <div>
+                        <p class="text-sm mb-2">Networking</p>
+                        <div class="skill-bar w-4/5"></div>
+                    </div>
+                    <div>
+                        <p class="text-sm mb-2">Tech Support</p>
+                        <div class="skill-bar w-5/6"></div>
+                    </div>
+                    <div>
+                        <p class="text-sm mb-2">UI/UX Design</p>
+                        <div class="skill-bar w-3/4"></div>
+                    </div>
+                    <div>
+                        <p class="text-sm mb-2">Cybersecurity</p>
+                        <div class="skill-bar w-2/3"></div>
+                    </div>
+                </div>
+
+                <!-- Tech Stack Icons -->
+                <div class="flex justify-between items-center">
+                    <div
+                        class="w-8 h-8 bg-orange-500 rounded flex items-center justify-center text-white font-bold text-xs">
+                        H5
+                    </div>
+                    <div
+                        class="w-8 h-8 bg-blue-500 rounded flex items-center justify-center text-white font-bold text-xs">
+                        CSS
+                    </div>
+                    <div
+                        class="w-8 h-8 bg-yellow-500 rounded flex items-center justify-center text-white font-bold text-xs">
+                        JS
+                    </div>
+                    <div
+                        class="w-8 h-8 bg-cyan-500 rounded flex items-center justify-center text-white font-bold text-xs">
+                        TW
+                    </div>
+                    <div
+                        class="w-8 h-8 bg-purple-500 rounded flex items-center justify-center text-white font-bold text-xs">
+                        PHP
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-12 max-w-md mx-auto">
+            <button
+                class="w-full sm:w-auto px-6 py-3 border border-white hover:bg-white hover:text-slate-900 transition-colors rounded">
+                VIEW PROJECTS
+            </button>
+            <button
+                class="w-full sm:w-auto px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-white transition-colors rounded font-semibold">
+                DOWNLOAD CV
+            </button>
+            <button
+                class="w-full sm:w-auto px-6 py-3 border border-white hover:bg-white hover:text-slate-900 transition-colors rounded">
+                CONTACT ME
+            </button>
+        </div>
+    </main>
+
+    <script>
+        // Simple mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Close mobile menu on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 
 </html>
